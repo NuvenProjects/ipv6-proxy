@@ -21,7 +21,7 @@ timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 flush
-auth strong
+
 
 users $(awk -F "/" 'BEGIN{ORS="";} {print $1 ":CL:" $2 " "}' ${WORKDATA})
 
@@ -50,7 +50,7 @@ upload_proxy() {
 }
 gen_data() {
     seq $FIRST_PORT $LAST_PORT | while read port; do
-        echo "usr$(random)/pass$(random)/$IP4/$port/$(gen64 $IP6)"
+        echo "$IP4/$port/$(gen64 $IP6)"
     done
 }
 
